@@ -4,7 +4,7 @@ topics = ["friends", "new girl", "seinfeld", "one tree hill", "rick and morty", 
 
 function displayGifTable() {
     var tvShow = $(this).attr("data-name");
-    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + tvShow + "&api_key=sijIZlRHCEAIYIwrlTJZVWbdlc495geu&limit=10";
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + tvShow + "&api_key=BkaUZZWcFij6J7AoQj3WtPb1R2p9O6V9&limit=10";
 
     $.ajax({
         url: queryURL,
@@ -14,7 +14,15 @@ function displayGifTable() {
         $("#gifTable").empty();
         for (var i = 0; i < 10; i++) {
             var gifImage = $("<img>");
-            gifImage.attr("src", response.data[i].images.fixed_height.url);
+            var animatedURL = response.data[i].images.fixed_height.url;
+            console.log(animatedURL);
+            var stillURL = response.data[i].images.fixed_height_still.url;
+            console.log(stillURL);
+            gifImage.attr("src", stillURL);
+            gifImage.addClass("gif");
+            gifImage.attr("data-still", stillURL);
+            gifImage.attr("data-animate", animatedURL);
+            gifImage.attr("data-state", "still");
             var rating = $("<p>").text("Rating: " + response.data[i].rating);
             var gifDiv = $("<div>").append(rating).append(gifImage);
             gifDiv.css("float", "left").css("margin", "4px");
@@ -39,9 +47,19 @@ $("#add-tvShow").on("click", function (event) {
     event.preventDefault();
     var tvShow = $("#tvShow-input").val().trim();
     topics.push(tvShow);
-
-    // Calling renderButtons which handles the processing of our movie array
     renderButtons();
+});
+
+$(document).on("click", ".gif", function () {
+    console.log("clicked image!");
+    var state = $(this).attr("data-state");
+    if (state === "still") {
+        $(this).attr("src", $(this).attr("data-animate"));
+        $(this).attr("data-state", "animate");
+    } else {
+        $(this).attr("src", $(this).attr("data-still"));
+        $(this).attr("data-state", "still");
+    }
 });
 
 $(document).on("click", ".tvShow-button", displayGifTable);
