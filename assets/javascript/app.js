@@ -67,6 +67,7 @@ function displayMoreGifsTable() {
         });
     }
     else {
+        $("#error-message").text("You gotta hit the buttons to show the gifs first, bruv!");
         $("#error-message").show();
     }
 
@@ -86,8 +87,15 @@ function renderButtons() {
 $("#add-tvShow").on("click", function (event) {
     event.preventDefault();
     var tvShow = $("#tvShow-input").val().trim();
-    topics.push(tvShow);
-    renderButtons();
+    if (tvShow == "") {
+        $("#error-message").text("You really tryna submit a blank field, holmes? You think I didn't plan for this? What an insult to my intelligence. You should be ashamed.")
+        $("#error-message").show();
+    }
+    else {
+        topics.push(tvShow);
+        renderButtons();
+    }
+
 });
 
 $(document).on("click", ".gif", function () {

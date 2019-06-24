@@ -13,6 +13,8 @@
 
 <body>
     <div class="container">
+        <h3>Click the below buttons to display gifs. Click the gifs to play/pause. Stay lit.</h3>
+
         <div class="row">
             <div class="col buttonRow">
             </div>
@@ -21,21 +23,24 @@
             <div class="col-8" id="gifTable"></div>
             <div class="col-4">
                 <div class="row">
-                    <form id="tvShow-form">
-                        <label for="tvShow-input">Add a TV Show!</label>
-                        <br>
-                        <input type="text" id="tvShow-input">
-                        <br>
-                        <input id="add-tvShow" class="btn btn-primary" type="submit" value="Submit">
-                    </form>
+                    <div class="col">
+                        <form id="tvShow-form">
+                            <label for="tvShow-input">Add a TV Show!</label>
+                            <br>
+                            <input type="text" id="tvShow-input">
+                            <br>
+                        </form>
+                    </div>
                 </div>
-                <div class="row" id="more-gifs-div">
-                    <button class="btn btn-primary" id="more-gifs-button" style="margin: 5px 5px 5px 0px">Gimme
-                        more!</button>
-                    <br>
-                    <p id="error-message" style="margin: 5px 5px 5px 0px">You gotta hit the buttons to show the gifs
-                        first, bruv!
-                    </p>
+                <div class="row">
+                    <div class="col">
+                        <input id="add-tvShow" class="btn btn-primary" type="submit" value="Submit">
+                        <button class="btn btn-primary" id="more-gifs-button" style="margin: 5px 5px 5px 0px">Gimme
+                            more!</button>
+                        <br>
+                        <p id="error-message" style="margin: 5px 5px 5px 0px">
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
